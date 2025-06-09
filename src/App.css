@@ -5,11 +5,31 @@
 .App-header {
   background-color: #282c34;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   align-items: center;
   justify-content: space-evenly;
   color: white;
   padding: 20px;
+  width: 100%;
+}
+
+body{
+  align-items:center;
+}
+
+.subheader{
+  align-items:center;
+  display:flex;
+  justify-content: center;
+  width:60%;
+}
+
+.search-bar{
+  margin-right:5%;
+}
+
+.sort-bar{
+  margin-left:5%;
 }
 
 @media (max-width: 600px) {
