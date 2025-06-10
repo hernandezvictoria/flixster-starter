@@ -4,7 +4,7 @@ import MovieCard from "./MovieCard.jsx";
 import "./MovieList.css";
 import {parseData} from "/Users/vlhernan/internship/codepath/flixster-starter/src/utils/helper-functions.js";
 
-function Forecast(props) {
+function MovieList(props) {
     //props: data
     //data: poster_path, title, rating
 
@@ -21,4 +21,4 @@ function Forecast(props) {
   );
 }
 
-export default Forecast;
+export default MovieList;
