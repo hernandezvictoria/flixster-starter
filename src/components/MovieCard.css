@@ -1,7 +1,21 @@
 .card{
     display:flex;
     flex-direction:column;
-    width:15%;
-    border: 1px solid black;
-    
+    width:250px;
+    margin-top: 20px;
+    box-shadow: 0px 0px 5px 2px rgb(0, 0, 0, 0.3);
+}
+
+.card:hover{
+    transform: translateY(-10px);
+    cursor:pointer
+}
+
+.card-title{
+    font-size:20px;
+}
+
+.card-rating{
+    font-size:15px;
+    color:gray;
 }

@@ -42,7 +42,9 @@ body{
 
 .movie-container{
   display:flex;
-  width:100%;
+  width:90%;
+  margin-right:auto;
+  margin-left:auto;
   align-items:center;
 }
 
