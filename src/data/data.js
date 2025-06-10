@@ -1,4 +1,4 @@
-const data = {
+const tempData = {
     "page": 1,
     "results": [
     {
@@ -398,4 +398,4 @@ const data = {
     "total_results": 992423
 }
 
-export default data
+export default tempData

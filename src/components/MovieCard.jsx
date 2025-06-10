@@ -4,6 +4,7 @@ import "./MovieCard.css"
 
 function MovieCard(props) {
 
+
     //props: poster_path, title, rating
   return (
     <div className="card">
