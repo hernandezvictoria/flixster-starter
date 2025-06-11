@@ -10,6 +10,12 @@ function MovieList(props) {
 
   const parsedData = parseData(props.data);
 
+  if(props.data.length === 0) {
+    return <div className="row">
+      <p>No movies found ☹️ </p>
+      </div>;
+  }
+
   return (
     <div className="row">
     {
