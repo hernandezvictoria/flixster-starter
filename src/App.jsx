@@ -224,10 +224,12 @@ const App = () => {
           <MovieList data={data} onCardClick={handleModalClick} sortMode={sortMode}/>
           <Modal data={data} title={modalMovieTitle} onClose={handleModalClose} genres={genres} runtime={modalMovieRuntime} />
         </div>
+        <LoadMore onLoadMore={handleLoadMore} />
       </main>
 
       <footer>
-        <LoadMore onLoadMore={handleLoadMore} />
+        <p className="footer-content">Created by <a href="https://github.com/hernandezvictoria">Victoria Hernandez</a> </p>
+        <p className="footer-content">API provided by <a href="https://www.themoviedb.org/documentation/api">The Movie DB</a></p>
       </footer>
     </div>
   );

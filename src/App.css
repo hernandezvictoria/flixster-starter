@@ -17,6 +17,10 @@
   width: 100%;
 }
 
+h1{
+  font-size: 50px;
+}
+
 
 
 .subheader{
@@ -61,4 +65,25 @@ body{
   .search-bar form {
     flex-direction: column;
   }
+}
+
+footer{
+  background-color: #282c34;
+  color: white;
+  padding: 20px;
+  width: 100%;
+
+  display:flex;
+  flex-direction:column;
+  justify-content: right;
+  text-align: right;
+}
+
+a{
+  color:red;
+}
+
+.footer-content{
+  margin:2px;
+  margin-right: 5%;
 }
