@@ -5,17 +5,20 @@ import { useState, useEffect } from 'react'
 import './App.css'
 import MovieList from './components/MovieList'
 import LoadMore from './components/LoadMore'
+import Modal from './components/Modal'
 
 const App = () => {
-  // STATE VARIABLES
+  // =============== STATE VARIABLES =================
   const [data, setData] = useState([]);
   const [pagesDisplayed, setPagesDisplayed] = useState(1); // for now playing
   const [searchQuery, setSearchQuery] = useState("");
   const [isSearching, setIsSearching] = useState(false);
-  const [searchPage, setSearchPage] = useState(1); // for search
+  const [searchPage, setSearchPage] = useState(1); // for searching
+  const [modalMovieTitle, setModalMovieTitle] = useState("");
+  const [genres, setGenres] = useState({}); // genres is a hashmap from genre id to genre name
   const accessToken = import.meta.env.VITE_API_KEY; // api key
 
-  // FETCH DATA FROM NOW PLAYING
+  // =============== FETCH DATA FROM NOW PLAYING ================
   const loadNowPlaying = async () => {
     const options = {
       method: 'GET',
@@ -38,7 +41,14 @@ const App = () => {
     }
   };
 
-  // FETCH DATA FROM SEARCH
+  // EFFECT: Now Playing
+  useEffect(() => {
+    if (!isSearching) {
+      loadNowPlaying();
+    }
+  }, [pagesDisplayed, isSearching]);
+
+  // =================== FETCH DATA FROM SEARCH ==================
   const loadSearchQuery = async () => {
     if (!searchQuery) return;
     const options = {
@@ -55,22 +65,12 @@ const App = () => {
     );
     const result = await response.json();
 
-    // make it so that you can load more pages of the searched page
     if (searchPage === 1) {
       setData(result.results);
     } else {
-      setData(prev => [...prev, ...result.results]);
+      setData(prev => [...prev, ...result.results]); // load more pages of the same search query
     }
-
-    //setIsSearching(false); // set is searching to false so that it does does not allow for automatic searching
   };
-
-  // EFFECT: Now Playing
-  useEffect(() => {
-    if (!isSearching) {
-      loadNowPlaying();
-    }
-  }, [pagesDisplayed, isSearching]);
 
   // EFFECT: Search
   useEffect(() => {
@@ -79,8 +79,40 @@ const App = () => {
     }
   }, [searchQuery, searchPage, isSearching]);
 
+  // =============== GET GENRES =================
+  const loadGenres = async () => {
+    const options = {
+      method: 'GET',
+      headers: {
+        accept: 'application/json',
+        Authorization: `Bearer ${accessToken}`
+      }
+    };
 
-  // HANDLERS
+    const response = await fetch(
+      `https://api.themoviedb.org/3/genre/movie/list`,
+      options
+    );
+
+    const result = await response.json();
+    console.log(result.genres);
+
+
+    let map = {};
+    for(const genre of result.genres){
+      map[genre.id] = genre.name;
+    }
+
+    setGenres(map);
+  };
+
+  // EFFECT: Load Genres
+  useEffect(() => {
+    loadGenres();
+  }, []); // load the genres only once on initial page load
+
+
+  //  =============== HANDLERS =================
   const handleSearchChange = (event) => {
     setSearchQuery(event.target.value);
   };
@@ -100,13 +132,22 @@ const App = () => {
     setSearchPage(1);
   };
 
-  const onLoadMore = () => {
+  const handleLoadMore = () => {
     if (isSearching) {
       setSearchPage(prev => prev + 1);
     } else {
       setPagesDisplayed(prev => prev + 1);
     }
   };
+
+  const handleModalClick = (movieTitle) => {
+    console.log("handling modal click " + movieTitle);
+    setModalMovieTitle(movieTitle);
+  }
+
+  const handleModalClose = () => {
+    setModalMovieTitle("");
+  }
 
   return (
     <div className="App">
@@ -140,12 +181,13 @@ const App = () => {
 
       <main>
         <div className="movie-container">
-          <MovieList data={data} />
+          <MovieList data={data} onCardClick={handleModalClick}/>
+          <Modal data={data} title={modalMovieTitle} onClose={handleModalClose} genres={genres}/>
         </div>
       </main>
 
       <footer>
-        <LoadMore onLoadMore={onLoadMore} />
+        <LoadMore onLoadMore={handleLoadMore} />
       </footer>
     </div>
   );

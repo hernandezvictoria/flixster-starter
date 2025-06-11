@@ -1,4 +1,4 @@
-const parseData = (data) => {
+const parseDataForCard = (data) => {
     let parsedData = [];
     for (let dataPoint of data){
         parsedData.push({
@@ -10,5 +10,20 @@ const parseData = (data) => {
     return parsedData;
 }
 
+const parseDataForModal = (data, title) => {
+    for (let dataPoint of data){
+        if (dataPoint.title === title){
+            return ({
+                title: dataPoint.title,
+                backdrop_path: dataPoint.backdrop_path,
+                release_date: dataPoint.release_date,
+                overview: dataPoint.overview,
+                genre_ids: dataPoint.genre_ids,
+                video: dataPoint.video
+            })
+        }
+    }
+}
 
-export { parseData};
+
+export { parseDataForCard, parseDataForModal };

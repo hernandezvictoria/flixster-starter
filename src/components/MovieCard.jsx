@@ -4,10 +4,14 @@ import "./MovieCard.css"
 
 function MovieCard(props) {
 
+  const handleClick = (event) => {
+    console.log("Card clicked", props.title);
+    props.onCardClick(props.title);
+  }
 
-    //props: poster_path, title, rating
+    //props: poster_path, title, rating, onCardClick
   return (
-    <div className="card">
+    <div className="card" onClick={handleClick}>
         <img className="card-poster" src={`https://image.tmdb.org/t/p/w300${props.poster_path}`} alt={props.title} />
         <p className="card-title">{props.title}</p>
         <p className="card-rating">Rating: {props.rating}</p>
