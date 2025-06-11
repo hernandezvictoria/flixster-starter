@@ -2,7 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import MovieCard from "./MovieCard.jsx";
 import "./MovieList.css";
-import {parseDataForCard} from "/Users/vlhernan/internship/codepath/flixster-starter/src/utils/helper-functions.js";
+import {parseDataForCard} from "../utils/helper-functions.js";
 
 function MovieList(props) {
     //props: data, onCardClick

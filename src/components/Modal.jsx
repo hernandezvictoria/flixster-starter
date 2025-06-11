@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import "./Modal.css";
-import {parseDataForModal} from "/Users/vlhernan/internship/codepath/flixster-starter/src/utils/helper-functions.js";
+import {parseDataForModal} from "../utils/helper-functions.js";
 const accessToken = import.meta.env.VITE_API_KEY; // api key
 
 function Modal(props) {
