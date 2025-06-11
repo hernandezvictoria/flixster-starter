@@ -5,7 +5,6 @@ import "./MovieCard.css"
 function MovieCard(props) {
 
   const handleClick = (event) => {
-    console.log("Card clicked", props.title);
     props.onCardClick(props.title);
   }
 

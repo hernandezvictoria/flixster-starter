@@ -16,6 +16,7 @@ const App = () => {
   const [searchPage, setSearchPage] = useState(1); // for searching
   const [modalMovieTitle, setModalMovieTitle] = useState("");
   const [genres, setGenres] = useState({}); // genres is a hashmap from genre id to genre name
+  const [modalMovieRuntime, setModalMovieRuntime] = useState(""); // runtime is in minutes
   const accessToken = import.meta.env.VITE_API_KEY; // api key
 
   // =============== FETCH DATA FROM NOW PLAYING ================
@@ -95,7 +96,6 @@ const App = () => {
     );
 
     const result = await response.json();
-    console.log(result.genres);
 
 
     let map = {};
@@ -110,6 +110,40 @@ const App = () => {
   useEffect(() => {
     loadGenres();
   }, []); // load the genres only once on initial page load
+
+  // =================== GET RUNTIME ==================
+  const loadRuntime = async () => {
+    const options = {
+      method: 'GET',
+      headers: {
+        accept: 'application/json',
+        Authorization: `Bearer ${accessToken}`
+      }
+    };
+
+    let id = "";
+    for(const movie of data){
+      if(movie.title === modalMovieTitle){
+        id = movie.id;
+      }
+    }
+
+    if (!id) return;
+
+    const response = await fetch(
+      `https://api.themoviedb.org/3/movie/${id}`,
+      options
+    );
+    const result = await response.json();
+
+    setModalMovieRuntime(result.runtime);
+  };
+
+  // EFFECT: Load Runtime
+  useEffect(() => {
+    loadRuntime();
+  }, [modalMovieTitle]); // load the genres only once on initial page load
+
 
 
   //  =============== HANDLERS =================
@@ -141,7 +175,6 @@ const App = () => {
   };
 
   const handleModalClick = (movieTitle) => {
-    console.log("handling modal click " + movieTitle);
     setModalMovieTitle(movieTitle);
   }
 
@@ -182,7 +215,7 @@ const App = () => {
       <main>
         <div className="movie-container">
           <MovieList data={data} onCardClick={handleModalClick}/>
-          <Modal data={data} title={modalMovieTitle} onClose={handleModalClose} genres={genres}/>
+          <Modal data={data} title={modalMovieTitle} onClose={handleModalClose} genres={genres} runtime={modalMovieRuntime} />
         </div>
       </main>
 

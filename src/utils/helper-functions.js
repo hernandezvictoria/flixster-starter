@@ -14,6 +14,7 @@ const parseDataForModal = (data, title) => {
     for (let dataPoint of data){
         if (dataPoint.title === title){
             return ({
+                id: dataPoint.id,
                 title: dataPoint.title,
                 backdrop_path: dataPoint.backdrop_path,
                 release_date: dataPoint.release_date,

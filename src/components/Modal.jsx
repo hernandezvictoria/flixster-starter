@@ -2,20 +2,16 @@ import React from "react";
 import ReactDOM from "react-dom";
 import "./Modal.css";
 import {parseDataForModal} from "/Users/vlhernan/internship/codepath/flixster-starter/src/utils/helper-functions.js";
+const accessToken = import.meta.env.VITE_API_KEY; // api key
 
 function Modal(props) {
 
-  // props: data, title, onClose, genres
+  // props: data, title, onClose, genres, runtime
   const parsedData = parseDataForModal(props.data, props.title);
 
   if(props.title === "") {
-
-    console.log("no title in modal");
     return;
   }
-
-  console.log("movie title in modal is " + props.title);
-  console.log(parsedData);
 
   const getGenres = () => {
     let genres = "";
@@ -33,6 +29,7 @@ function Modal(props) {
             <div className="modal-body">
                 <img src={`https://image.tmdb.org/t/p/w300${parsedData.backdrop_path}`} alt={props.title} />
                 <p><strong>Release Date:</strong> {parsedData.release_date}</p>
+                <p><strong>Runtime:</strong> {props.runtime}</p>
                 <p><strong>Overview:</strong> {parsedData.overview}</p>
                 <p><strong>Genres:</strong> {getGenres()}</p>
 
