@@ -6,9 +6,26 @@ import {parseDataForCard} from "/Users/vlhernan/internship/codepath/flixster-sta
 
 function MovieList(props) {
     //props: data, onCardClick
-    //data: poster_path, title, rating
+    //data: poster_path, title, rating, release_date
 
-  const parsedData = parseDataForCard(props.data);
+  let parsedData = parseDataForCard(props.data);
+
+  if(props.sortMode === "title") {
+    parsedData = parsedData.sort((a, b) => a.title.localeCompare(b.title));
+  }
+
+  if(props.sortMode === "voteAverage"){
+    parsedData = parsedData.sort((a, b) => parseInt(b.rating) - parseInt(a.rating));
+  }
+
+  if (props.sortMode === "releaseDate") {
+    parsedData = parsedData.sort((a, b) => {
+      const dateA = new Date(a.release_date);
+      const dateB = new Date(b.release_date);
+      return dateB.getTime() - dateA.getTime();
+    });
+  }
+
 
   if(props.data.length === 0) {
     return <div className="row">

@@ -17,7 +17,10 @@ const App = () => {
   const [modalMovieTitle, setModalMovieTitle] = useState("");
   const [genres, setGenres] = useState({}); // genres is a hashmap from genre id to genre name
   const [modalMovieRuntime, setModalMovieRuntime] = useState(""); // runtime is in minutes
+  const [sortMode, setSortMode] = useState("default"); // default, title, releaseDate, voteAverage
+
   const accessToken = import.meta.env.VITE_API_KEY; // api key
+
 
   // =============== FETCH DATA FROM NOW PLAYING ================
   const loadNowPlaying = async () => {
@@ -182,6 +185,10 @@ const App = () => {
     setModalMovieTitle("");
   }
 
+  const handleSortChange = (event) => {
+    setSortMode(event.target.value);
+  }
+
   return (
     <div className="App">
       <header className="App-header">
@@ -202,8 +209,8 @@ const App = () => {
           </div>
 
           <div className="sort-bar">
-            <select>
-              <option value="default">Sort by</option>
+            <select onChange={handleSortChange}>
+              <option value="default" selected>Sort by</option>
               <option value="title">Title (A-Z)</option>
               <option value="releaseDate">Release Date (newest to oldest)</option>
               <option value="voteAverage">Vote Average (highest to lowest)</option>
@@ -214,7 +221,7 @@ const App = () => {
 
       <main>
         <div className="movie-container">
-          <MovieList data={data} onCardClick={handleModalClick}/>
+          <MovieList data={data} onCardClick={handleModalClick} sortMode={sortMode}/>
           <Modal data={data} title={modalMovieTitle} onClose={handleModalClose} genres={genres} runtime={modalMovieRuntime} />
         </div>
       </main>

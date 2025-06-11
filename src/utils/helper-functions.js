@@ -4,7 +4,8 @@ const parseDataForCard = (data) => {
         parsedData.push({
             poster_path: dataPoint.poster_path,
             title: dataPoint.title,
-            rating: dataPoint.vote_average
+            rating: dataPoint.vote_average,
+            release_date: dataPoint.release_date
         })
     }
     return parsedData;
