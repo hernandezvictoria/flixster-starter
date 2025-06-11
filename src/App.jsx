@@ -210,7 +210,7 @@ const App = () => {
 
           <div className="sort-bar">
             <select onChange={handleSortChange}>
-              <option value="default" selected>Sort by</option>
+              <option value="default">Sort by</option>
               <option value="title">Title (A-Z)</option>
               <option value="releaseDate">Release Date (newest to oldest)</option>
               <option value="voteAverage">Vote Average (highest to lowest)</option>

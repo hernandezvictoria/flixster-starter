@@ -37,7 +37,12 @@ function MovieList(props) {
     <div className="row">
     {
         parsedData.map(obj => {
-            return(<MovieCard poster_path={obj.poster_path} title={obj.title} rating={obj.rating} onCardClick={props.onCardClick}/>);
+            return(<MovieCard
+                    key={obj.id}
+                    poster_path={obj.poster_path}
+                    title={obj.title}
+                    rating={obj.rating}
+                    onCardClick={props.onCardClick}/>);
         })
         }
     </div>
