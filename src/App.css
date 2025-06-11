@@ -3,7 +3,7 @@
   align-items: center;
   display:flex;
   flex-direction:column;
-  width:100%;
+  width:100vw;
 }
 
 .App-header {
@@ -14,7 +14,7 @@
   justify-content: space-evenly;
   color: white;
   padding: 20px;
-  width: 100%;
+  width: calc(100vw - 40px);
 }
 
 h1{

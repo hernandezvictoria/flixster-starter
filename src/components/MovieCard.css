@@ -1,21 +1,22 @@
-.card{
-    display:flex;
-    flex-direction:column;
-    width:200px;
+.card {
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+    min-width: 300px;
     margin-top: 20px;
     box-shadow: 0px 0px 5px 2px rgb(0, 0, 0, 0.3);
 }
 
-.card:hover{
+.card:hover {
     transform: translateY(-10px);
-    cursor:pointer
+    cursor: pointer
 }
 
-.card-title{
-    font-size:20px;
+.card-title {
+    font-size: 20px;
 }
 
-.card-rating{
-    font-size:15px;
-    color:gray;
+.card-rating {
+    font-size: 15px;
+    color: gray;
 }
