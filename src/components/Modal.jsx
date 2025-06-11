@@ -21,22 +21,13 @@ function Modal(props) {
     return genres;
   }
 
-  const getImage = () => {
-    if (props.backdrop_path === undefined) {
-      return 'src/assets/placeholder-poster.jpg';
-    }
-    else{
-      return `https://image.tmdb.org/t/p/w300${parsedData.backdrop_path}`;
-    }
-  }
-
   return (
     <div className="modal-overlay" onClick={props.onClose}>
         <div className="modal" onClick={(event) => event.stopPropagation()}>
             <button className="close-button" onClick={props.onClose}>Close</button>
             <h2>{parsedData.title}</h2>
             <div className="modal-body">
-                <img src={getImage()} alt={props.title} />
+                <img src={`https://image.tmdb.org/t/p/w300${parsedData.backdrop_path}`} alt={props.title} />
                 <p><strong>Release Date:</strong> {parsedData.release_date}</p>
                 <p><strong>Runtime:</strong> {props.runtime}</p>
                 <p><strong>Overview:</strong> {parsedData.overview}</p>
