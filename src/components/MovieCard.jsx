@@ -37,8 +37,17 @@ function MovieCard(props) {
       <p className="card-rating">Rating: {props.rating}</p>
       <div className="icons">
         {/* using icons from Font Awesome */}
-        <i id="like-icon" className={`fa-heart ${liked ? 'fa-solid' : 'fa-regular'}`} onClick={switchLikeIcon}></i>
-        <i id="watch-icon" className={`fa-solid ${watched ? 'fa-eye' : 'fa-eye-slash'}`} onClick={switchWatchedIcon}></i>
+
+        <div className="like-icon-container">
+          <i id="like-icon" className={`fa-heart ${liked ? 'fa-solid' : 'fa-regular'}`} onClick={switchLikeIcon}></i>
+          <span className="like-overlay-text">Add/Remove from Liked</span>
+        </div>
+
+        <div className="watch-icon-container">
+          <i id="watch-icon" className={`fa-solid ${watched ? 'fa-eye' : 'fa-eye-slash'}`} onClick={switchWatchedIcon}></i>
+          <span className="watch-overlay-text">Add/Remove from Watched</span>
+        </div>
+        
       </div>
     </div>
   );

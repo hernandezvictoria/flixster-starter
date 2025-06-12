@@ -20,8 +20,20 @@
     max-width: 700px;
     color: white;
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.6);
+    animation: fadeIn 0.3s ease-out;
  }
 
  .close-button{
    margin-right: 90%;
+ }
+
+ @keyframes fadeIn {
+   from {
+     opacity: 0;
+     transform: translateY(-20px);
+   }
+   to {
+     opacity: 1;
+     transform: translateY(0);
+   }
  }

@@ -5,6 +5,7 @@
     min-width: 300px;
     margin-top: 20px;
     box-shadow: 0px 0px 5px 2px rgb(0, 0, 0, 0.3);
+    transition: transform 0.3s ease-out; /* Add this line */
 }
 
 .card:hover {
@@ -17,7 +18,7 @@
 }
 
 .card-rating {
-    font-size: 15px;
+    font-size: 20px;
     color: gray;
 }
 
@@ -29,12 +30,50 @@
     margin-bottom:10px;
 }
 
-#like-icon{
+
+
+.like-icon-container {
+    position: relative;
     margin-left:auto;
     margin-right:5px;
 }
 
-#watch-icon{
+.like-overlay-text {
+    display: none; /* Initially hide the text */
+    position: absolute;
+    top: 20px;
+    left: 0;
+    background-color: gray;
+    color:white;
+    font-size:15px;
+    opacity:50%;
+    padding: 5px;
+    white-space: nowrap;
+}
+
+.like-icon-container:hover .like-overlay-text {
+    display: block; /* Show the text on hover */
+}
+
+.watch-icon-container {
+    position: relative;
     margin-right:auto;
     margin-left:5px;
+}
+
+.watch-overlay-text {
+    display: none; /* Initially hide the text */
+    position: absolute;
+    top: 20px;
+    left: 0;
+    background-color: gray;
+    opacity:50%;
+    color:white;
+    font-size:15px;
+    padding: 5px;
+    white-space: nowrap;
+}
+
+.watch-icon-container:hover .watch-overlay-text {
+    display: block; /* Show the text on hover */
 }
