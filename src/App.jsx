@@ -16,7 +16,8 @@ const App = () => {
   const [searchPage, setSearchPage] = useState(1); // for searching
   const [modalMovieTitle, setModalMovieTitle] = useState("");
   const [genres, setGenres] = useState({}); // genres is a hashmap from genre id to genre name
-  const [modalMovieRuntime, setModalMovieRuntime] = useState(""); // runtime is in minutes
+  const [modalMovieRuntime, setModalMovieRuntime] = useState("");
+  const [modalMovieTrailerKey, setModalMovieTrailerKey] = useState("");
   const [sortMode, setSortMode] = useState("default"); // default, title, releaseDate, voteAverage
 
   const accessToken = import.meta.env.VITE_API_KEY; // api key
@@ -114,8 +115,8 @@ const App = () => {
     loadGenres();
   }, []); // load the genres only once on initial page load
 
-  // =================== GET RUNTIME ==================
-  const loadRuntime = async () => {
+  // =================== GET RUNTIME & TRAILER FOR MODAL ==================
+  const loadRuntimeAndTrailer = async () => {
     const options = {
       method: 'GET',
       headers: {
@@ -133,19 +134,42 @@ const App = () => {
 
     if (!id) return;
 
-    const response = await fetch(
-      `https://api.themoviedb.org/3/movie/${id}`,
-      options
-    );
-    const result = await response.json();
+    try {
+      const runtimeResponse = await fetch(`https://api.themoviedb.org/3/movie/${id}`, options);
+      if (!runtimeResponse.ok) {
+        throw new Error('Network response error');
+      }
+      const runtimeResult = await runtimeResponse.json();
+      setModalMovieRuntime(runtimeResult.runtime);
+    }
+    catch (error) {
+      console.error("Unable to fetch runtime: ", error);
+    }
 
-    setModalMovieRuntime(result.runtime);
+    try {
+      const trailerResponse = await fetch(`https://api.themoviedb.org/3/movie/${id}/videos`, options);
+      if (!trailerResponse.ok) {
+        throw new Error('Network response error');
+      }
+      const trailerResult = await trailerResponse.json();
+      console.log(trailerResult);
+
+      for(const video of trailerResult.results){
+        if(video.type === "Trailer" && video.site === "YouTube"){
+          setModalMovieTrailerKey(video.key);
+        }
+      }
+    }
+    catch (error) {
+      console.error("Unable to fetch trailer: ", error);
+    }
+
   };
 
-  // EFFECT: Load Runtime
+  // EFFECT: Load Runtime and Trailer
   useEffect(() => {
-    loadRuntime();
-  }, [modalMovieTitle]); // load the genres only once on initial page load
+    loadRuntimeAndTrailer();
+  }, [modalMovieTitle]);
 
 
 
@@ -222,7 +246,7 @@ const App = () => {
       <main>
         <div className="movie-container">
           <MovieList data={data} onCardClick={handleModalClick} sortMode={sortMode}/>
-          <Modal data={data} title={modalMovieTitle} onClose={handleModalClose} genres={genres} runtime={modalMovieRuntime} />
+          <Modal data={data} title={modalMovieTitle} onClose={handleModalClose} genres={genres} runtime={modalMovieRuntime} trailerKey={modalMovieTrailerKey}/>
         </div>
         <LoadMore onLoadMore={handleLoadMore} />
       </main>

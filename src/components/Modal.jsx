@@ -6,7 +6,7 @@ const accessToken = import.meta.env.VITE_API_KEY; // api key
 
 function Modal(props) {
 
-  // props: data, title, onClose, genres, runtime
+  // props: data, title, onClose, genres, runtime, trailerKey
   const parsedData = parseDataForModal(props.data, props.title);
 
   if(props.title === "") {
@@ -32,6 +32,12 @@ function Modal(props) {
                 <p><strong>Runtime:</strong> {props.runtime}</p>
                 <p><strong>Overview:</strong> {parsedData.overview}</p>
                 <p><strong>Genres:</strong> {getGenres()}</p>
+
+                {/* load the youtube video */}
+                <iframe width="560" height="315" src={`https://www.youtube.com/embed/${props.trailerKey}`}
+                title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write;
+                encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin"
+                allowfullscreen></iframe>
 
             </div>
         </div>
