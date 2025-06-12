@@ -38,10 +38,13 @@ h1{
   margin-left:5%;
 }
 
+.sort-bar:hover{
+  cursor:pointer;
+}
+
 body{
   display:flex;
   align-items:center;
-  width: 100%;
 }
 
 .movie-container{

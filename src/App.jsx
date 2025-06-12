@@ -64,7 +64,7 @@ const App = () => {
     };
 
     const response = await fetch(
-      `https://api.themoviedb.org/3/search/movie?query=${encodeURIComponent(searchQuery)}&page=${searchPage}`,
+      `https://api.themoviedb.org/3/search/movie?query=${searchQuery}&page=${searchPage}`,
       options
     );
     const result = await response.json();
@@ -209,7 +209,7 @@ const App = () => {
           </div>
 
           <div className="sort-bar">
-            <select onChange={handleSortChange}>
+            <select className="sort-bar" onChange={handleSortChange}>
               <option value="default">Sort by</option>
               <option value="title">Title (A-Z)</option>
               <option value="releaseDate">Release Date (newest to oldest)</option>
