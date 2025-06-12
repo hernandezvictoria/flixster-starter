@@ -13,10 +13,28 @@
 }
 
 .card-title {
-    font-size: 20px;
+    font-size: 30px;
 }
 
 .card-rating {
     font-size: 15px;
     color: gray;
+}
+
+.icons{
+    display:flex;
+    width: 70%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom:10px;
+}
+
+#like-icon{
+    margin-left:auto;
+    margin-right:5px;
+}
+
+#watch-icon{
+    margin-right:auto;
+    margin-left:5px;
 }
