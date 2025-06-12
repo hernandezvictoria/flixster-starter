@@ -1,3 +1,10 @@
+h2{
+    font-size: 50px;
+}
+
+p{
+   font-size:25px;
+}
 .modal-overlay {
     position: fixed;
     top:50%;
@@ -14,10 +21,10 @@
     border: 2px solid white;
     margin: 5% auto;
     padding: 30px;
-    width: 50%;
-    height: 50%;
+    width: 60%;
+    height: 60%;
     overflow:scroll;
-    max-width: 700px;
+    max-width: 1000px;
     color: white;
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.6);
     animation: fadeIn 0.3s ease-out;
@@ -37,4 +44,3 @@
      transform: translateY(0);
    }
  }
-
