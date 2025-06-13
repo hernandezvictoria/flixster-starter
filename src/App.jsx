@@ -32,17 +32,22 @@ const App = () => {
         Authorization: `Bearer ${accessToken}`
       }
     };
+    try{
+      const response = await fetch(
+        `https://api.themoviedb.org/3/movie/now_playing?page=${pagesDisplayed}`,
+        options
+      );
+      const result = await response.json();
 
-    const response = await fetch(
-      `https://api.themoviedb.org/3/movie/now_playing?page=${pagesDisplayed}`,
-      options
-    );
-    const result = await response.json();
-
-    if (pagesDisplayed === 1) {
-      setData(result.results);
-    } else {
-      setData(prev => [...prev, ...result.results]);
+      if (pagesDisplayed === 1) {
+        setData(result.results);
+      } else {
+        setData(prev => [...prev, ...result.results]); // load more pages of the same search query
+      }
+    }
+    catch (error) {
+      console.error("Unable to fetch now playing: ", error);
+      return(<h1>Something went wrong 🫤</h1>);
     }
   };
 
@@ -64,17 +69,23 @@ const App = () => {
       }
     };
 
-    const response = await fetch(
-      `https://api.themoviedb.org/3/search/movie?query=${searchQuery}&page=${searchPage}`,
-      options
-    );
-    const result = await response.json();
+    try{
+      const response = await fetch(
+        `https://api.themoviedb.org/3/search/movie?query=${searchQuery}&page=${searchPage}`,
+        options
+      );
+      const result = await response.json();
 
-    if (searchPage === 1) {
-      setData(result.results);
-    } else {
-      setData(prev => [...prev, ...result.results]); // load more pages of the same search query
+      if (searchPage === 1) {
+        setData(result.results);
+      } else {
+        setData(prev => [...prev, ...result.results]); // load more pages of the same search query
+      }
+    } catch (error) {
+      console.error("Unable to fetch search results: ", error);
+      return(<h1>Something went wrong 🫤</h1>);
     }
+
   };
 
   // EFFECT: Search
@@ -94,20 +105,24 @@ const App = () => {
       }
     };
 
-    const response = await fetch(
-      `https://api.themoviedb.org/3/genre/movie/list`,
-      options
-    );
+    try{
+      const response = await fetch(
+        `https://api.themoviedb.org/3/genre/movie/list`,
+        options
+      );
 
-    const result = await response.json();
+      const result = await response.json();
 
-
-    let map = {};
-    for(const genre of result.genres){
-      map[genre.id] = genre.name;
+      let map = {};
+      for(const genre of result.genres){
+        map[genre.id] = genre.name;
+      }
+      setGenres(map);
     }
-
-    setGenres(map);
+    catch (error) {
+      console.error("Unable to fetch genres: ", error);
+      return(<h1>Something went wrong 🫤</h1>);
+    }
   };
 
   // EFFECT: Load Genres
@@ -144,6 +159,7 @@ const App = () => {
     }
     catch (error) {
       console.error("Unable to fetch runtime: ", error);
+      return(<h1>Something went wrong 🫤</h1>);
     }
 
     try {
@@ -152,7 +168,6 @@ const App = () => {
         throw new Error('Network response error');
       }
       const trailerResult = await trailerResponse.json();
-      console.log(trailerResult);
 
       for(const video of trailerResult.results){
         if(video.type === "Trailer" && video.site === "YouTube"){
@@ -162,6 +177,7 @@ const App = () => {
     }
     catch (error) {
       console.error("Unable to fetch trailer: ", error);
+      return(<h1>Something went wrong 🫤</h1>);
     }
 
   };
@@ -217,7 +233,7 @@ const App = () => {
     <div className="App">
       <header className="App-header">
 
-        <h1>🎬 Flixster 🎥 </h1>
+        <h1>🎬 Flixster 🎥</h1>
         <div className="subheader">
           <div className="search-bar">
             <form onSubmit={handleSearchSubmit} onReset={handleSearchReset}>
