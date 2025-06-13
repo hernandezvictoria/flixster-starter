@@ -100,28 +100,26 @@ Deployed Application (**required**): [Flixster Deployed Site](https://flixster-s
 
 ### Walkthrough Video
 
-`TODO://` Add the embedded URL code to your animated app walkthrough below, `ADD_EMBEDDED_CODE_HERE`. Make sure the video or gif actually renders and animates when viewing this README. Ensure your walkthrough showcases the presence and/or functionality of all features you implemented above (check them off as you film!). Pay attention to any **VIDEO WALKTHROUGH SPECIAL INSTRUCTIONS** checkboxes listed above to ensure graders see the full functionality of your website! (🚫 Remove this paragraph after adding walkthrough video)
-
-`ADD_EMBEDDED_CODE_HERE`
+`<div style="position: relative; padding-bottom: 57.75401069518716%; height: 0;"><iframe src="https://www.loom.com/embed/fd1d9e4d3f05489c9e5a6e1c0d1d80c3?sid=c2a4036d-bc54-489a-80b6-1a63ac5d7690" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></iframe></div>`
 
 ### Reflection
 
 * Did the topics discussed in your labs prepare you to complete the assignment? Be specific, which features in your weekly assignment did you feel unprepared to complete?
 
-Add your response here
+Yes, the weather app lab was very helpful for the setup of this project. Also, I feel there was a lot of overlap between this assignment and the last assignment.
 
 * If you had more time, what would you have done differently? Would you have added additional features? Changed the way your project responded to a particular event, etc.
 
-Add your response here
+If given more time, I would have added the sidebar feature. I also would've added more animations to make the website more visually appealing. I instead chose to focus on the cleanliness of my code.
 
 * Reflect on your project demo, what went well? Were there things that maybe didn't go as planned? Did you notice something that your peer did that you would like to try next time?
 
-Add your response here
+I am glad I was able to make my UI look better than last time. Something that was really difficult for me was getting my API to work and parsing through the API documentation to get what I was looking for. My peer used a marquee to make his text animated and I would like to do that next time.
 
 ### Open-source libraries used
 
-- Add any links to open-source libraries used in your project.
+- n/a
 
 ### Shout out
 
-Give a shout out to somebody from your cohort that especially helped you during your project. This can be a fellow peer, instructor, TA, mentor, etc.
+Shout out to my peers, Ben and Valerie. Also shout out to Tom and Virsaviya the teaching fellows for helping me debug and better understand my code.
