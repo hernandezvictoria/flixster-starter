@@ -35,9 +35,9 @@ function Modal(props) {
 
                 {/* load the youtube video */}
                 <iframe width="560" height="315" src={`https://www.youtube.com/embed/${props.trailerKey}`}
-                title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write;
-                encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin"
-                allowfullscreen></iframe>
+                title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write;
+                encrypted-media; gyroscope; picture-in-picture; web-share" referrerPolicy="strict-origin-when-cross-origin"
+                allowFullScreen></iframe>
 
             </div>
         </div>

@@ -15,7 +15,7 @@ function MovieList(props) {
   }
 
   if(props.sortMode === "voteAverage"){
-    parsedData = parsedData.sort((a, b) => parseInt(b.rating) - parseInt(a.rating));
+    parsedData = parsedData.sort((a, b) => parseFloat(b.rating) - parseFloat(a.rating));
   }
 
   if (props.sortMode === "releaseDate") {

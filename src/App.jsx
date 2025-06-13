@@ -216,8 +216,8 @@ const App = () => {
   return (
     <div className="App">
       <header className="App-header">
-        <h1>🎥 Flixster 🎬</h1>
 
+        <h1>🎬 Flixster 🎥 </h1>
         <div className="subheader">
           <div className="search-bar">
             <form onSubmit={handleSearchSubmit} onReset={handleSearchReset}>

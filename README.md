@@ -4,7 +4,7 @@ Submitted by: **Victoria Hernandez**
 
 Estimated time spent: **10-12** hours spent in total
 
-Deployed Application (**required**): [Flixster Deployed Site](ADD_LINK_HERE)
+Deployed Application (**required**): [Flixster Deployed Site](https://flixster-starter-93hf.onrender.com)
 
 ### Application Features
 
@@ -67,9 +67,9 @@ Deployed Application (**required**): [Flixster Deployed Site](ADD_LINK_HERE)
 #### STRETCH FEATURES
 
 
-- [ ] **Embedded Movie Trailers**
-  - [ ] Within the pop-up modal displaying a movie's details, the movie trailer is viewable.
-    - [ ] When the trailer is clicked, users can play the movie trailer.
+- [x] **Embedded Movie Trailers**
+  - [x] Within the pop-up modal displaying a movie's details, the movie trailer is viewable.
+    - [x] When the trailer is clicked, users can play the movie trailer.
 - [x] **Favorite Button**
   - [x] For each movie displayed, users can favorite the movie.
   - [x] There should be visual element (such as a heart icon) on each movie's tile to show whether or not the movie has been favorited.
